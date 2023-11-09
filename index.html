@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>API - Find My IP Address</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+
+        <h2>View <span class="changecontent"></span> Details using IP</h2>
+        <h3 class="logo">IP - FINDER</h3>
+        <div class="container">
+
+            <div class="box">
+                <div class="top-bar">
+                    <input type="text" class="ipaddress"
+                        placeholder="Enter Ip Address">
+                    <button class="find-btn">Submit</button>
+                </div>
+                <div class="flex">
+                    <div class="divone">
+                        <h1>Country <span id="country"> - </span></h1>
+                        <h1>Country Capital <span id="capital"> - </span></h1>
+                        <h1>City <span id="city"> - </span></h1>
+                        <h1>Region <span id="region"> - </span></h1>
+                        <h1>Latitude <span id="latitude"> - </span></h1>
+                        <h1>Longitude <span id="longitude"> - </span></h1>
+                        <h1>Time Zone <span id="timezone"> - </span></h1>
+                        <h1>Calling Code <span id="callingcode"> - </span></h1>
+                        <h1>Currency <span id="currency"> - </span></h1>
+                        <h1>IP Address <span id="ipadd"> - </span></h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+        let ipaddresstagcalling = document.querySelector(".ipaddress");
+        let buttontagcalling = document.querySelector(".find-btn");
+        let countrytagcalling  = document.getElementById("country");
+        let capitaltagcalling  = document.getElementById("capital");
+        let citytagcalling  = document.getElementById("city");
+        let regiontagcalling  = document.getElementById("region");
+        let latitudecalling  = document.getElementById("latitude");
+        let longitude  = document.getElementById("longitude");
+        let timezone  = document.getElementById("timezone");
+        let callingcode  = document.getElementById("callingcode");
+        let currency  = document.getElementById("currency");
+        let ipadd  = document.getElementById("ipadd");
+
+        
+        buttontagcalling.addEventListener("click",()=>{
+fetch("https://ipapi.co/"+ipaddresstagcalling.value+"/json/").then((res)=>res.json()).then((output)=>{
+console.log(output);
+countrytagcalling.innerHTML = ":" + " " + output.country_name;
+capitaltagcalling.innerHTML = ":" + " " + output.country_capital;
+citytagcalling.innerHTML = ":" + " " + output.city;
+regiontagcalling.innerHTML = ":" + " " + output.region;
+latitudecalling.innerHTML = ":" + " " + output.latitude;
+longitude.innerHTML =  ":" + " " + output.longitude;
+timezone.innerHTML =  ":" + " " + output.timezone;
+callingcode.innerHTML = ":" + " " + output.country_calling_code;
+currency.innerHTML =   ":" + " " + output.currency_name;
+ipadd.innerHTML = ":" + " " + output.ip;
+
+})
+
+}
+)
+</script>
+    </body>
+</html>
